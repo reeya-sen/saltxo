@@ -1,0 +1,77 @@
+{%- liquid
+  assign out_of_stock_t = 'products.out_of_stock' | t
+
+  assign current_variant = product.selected_or_first_available_variant
+
+  if block_settings
+    assign variant_style = block_settings.variant-style
+    assign size_chart_enabled = block_settings.size-chart-enabled
+    assign size_chart_option = block_settings.size-chart-option | strip | downcase
+    assign swatches = block_settings.swatches
+  endif
+
+  unless unique_handle
+    assign unique_id = id
+  else
+    assign unique_id = unique_handle | append: '-' | append: id
+  endunless
+-%}
+
+{%- unless product.has_only_default_variant -%}
+  {%- unless settings.quick-add--enabled -%}
+    <script type="module">
+      import "{{ 'product-options.js' | asset_url }}";
+    </script>
+  {%- endunless -%}
+
+  <product-options-root
+    class="product-options--root"
+    data-id="{{ id }}"
+    data-product-handle="{{ product.handle }}"
+    data-product-id="{{ product.id }}"
+    data-product-url="{{ product.url }}"
+    aria-busy="false"
+  >
+    <div class="product-options--container">
+      {%- for option in product.options_with_values -%}
+        <div class="product-options--option" data-index="{{ forloop.index0 }}">
+          {%- liquid
+            assign swatch_count = option.values | map: 'swatch' | compact | size
+
+            if swatches != 'none' and swatch_count > 0
+              render 'swatches', option: option, id: unique_id, shape: swatches
+            elsif variant_style == 'dropdowns'
+              render 'disclosure', display_label: true, label_name: option.name, option_names: option.values, current_value: option.selected_value, id: unique_id, type: 'option-picker'
+            else
+              render 'radios', option: option, id: unique_id
+            endif
+
+            comment
+              "The size chart link gets moved with JS"
+            endcomment
+          -%}
+
+          {%- if size_chart_enabled and size_chart_option == option_name -%}
+            <div class="product-size-chart--root" style="display:none;">
+              <modal-trigger
+                class="product-size-chart--link"
+                data-id="size-chart"
+                data-item="block-link"
+                aria-haspopup="true"
+                tabindex="0"
+              >
+                <span>
+                  {{- 'products.size_chart' | t -}}
+                </span>
+              </modal-trigger>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <script type="application/json" id="variant-json-{{ unique_id }}">
+      {{- current_variant | json -}}
+    </script>
+  </product-options-root>
+{%- endunless -%}

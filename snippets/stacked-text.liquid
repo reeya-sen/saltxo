@@ -1,0 +1,152 @@
+{%- liquid
+  assign text_exists = false
+  if overline != blank or title != blank or description != blank or link_text != blank
+    assign text_exists = true
+  endif
+
+  unless description_type
+    assign description_type = 'paragraph'
+  endunless
+
+  unless bg_color
+    assign bg_color = 'transparent'
+  endunless
+-%}
+
+{%- if text_exists -%}
+  <div
+    class="stacked-text--root"
+    {% if white_text %}
+      data-text-color="white"
+    {% endif %}
+    data-mobile-alignment="{{ mobile_alignment }}"
+    data-x-alignment="{{ x_alignment }}"
+    data-y-alignment="{{ y_alignment }}"
+    data-width="{{ width }}"
+  >
+    <div
+      class="stacked-text--wrapper"
+      data-text-style="{{ style }}"
+      data-background-color="{{ bg_color }}"
+      data-translucent="{{ settings.content--box-translucent }}"
+      {% unless settings.transitions--text %}
+        data-transition-container="{{ id }}"
+        data-transition-type="slide-in"
+        data-transition-cascade="vertical"
+        data-transition-cascade-interval="500"
+      {% endunless %}
+    >
+      {%- if title != blank -%}
+        <div
+          {% unless settings.transitions--text %}
+            data-transition-item="{{ id }}"
+          {% endunless %}
+        >
+          <h2 class="stacked-text--title" data-item="{{ heading_type }}">
+            {%- render "utils", utility: "emphasized-text", text: title -%}
+          </h2>
+        </div>
+      {%- endif -%}
+
+      {% if section.settings.image_picker != blank %}
+      <div>
+        {%- liquid
+                assign image = section.settings.image_picker
+                assign image_width = section.settings.image_width
+                assign retina_size = image_width | times: 2
+                assign image_link = section.settings.image_link
+                assign image_alt = image.alt | strip_html | escape
+                assign image_widths = '50, 60, 80, 100, 120, 180, 200, 240, 280, 300, 360, 400, 480, 500, 560, 600, 720, 800, 960, 1000'
+                assign sizes = '(min-width: ' | append: image_width | append: 'px) ' | append: image_width | append: 'px, calc(100vw - 40px)'
+                assign animation_delay = animation_delay | plus: 150
+
+                capture styles
+                  echo 'width: ' | append: image_width | append: 'px;'
+                endcapture
+              -%}
+
+{%- if image_link != blank -%}
+                  <a href="{{ image_link }}" aria-label="{{ image_alt }}">
+                {%- endif -%}
+                  {%- render 'image-new',
+                    image: image,
+                    width: retina_size,
+                    widths: image_widths,
+                    sizes: sizes,
+                    styles: styles,
+                    cover: false,
+                    classes: 'text__image',
+                    placeholder_svg: 'image' -%}
+                {%- if image_link != blank -%}
+                  </a>
+                {%- endif -%}
+
+        
+      </div>  
+      {% endif %}
+
+      {%- if overline != blank -%}
+        <div
+          class="stacked-text--overline"
+          {% unless settings.transitions--text %}
+            data-transition-item="{{ id }}"
+          {% endunless %}
+        >
+          <h3 data-item="overline">
+            {{- overline | escape -}}
+          </h3>
+        </div>
+      {%- endif -%}
+
+      {%- if description != blank -%}
+        <div
+          class="stacked-text--description"
+          data-item="{{ description_type }}"
+          {% if mobile_hide_description %}
+            data-mq="medium-large"
+          {% endif %}
+          {% unless settings.transitions--text %}
+            data-transition-item="{{ id }}"
+          {% endunless %}
+        >
+          {{- description -}}
+        </div>
+      {%- endif -%}
+
+      {%- if link_text != blank -%}
+        {%- if cover_link -%}
+          <div
+            class="stacked-text--button"
+            data-item="{{- settings.buttons--style -}}"
+            data-text="{{ link_text }}"
+            {% unless settings.transitions--text %}
+              data-transition-item="{{ id }}"
+              data-transition-type="fade-in"
+            {% endunless %}
+            {% unless settings.transitions--buttons %}
+              data-transition-button
+            {% endunless %}
+          >
+            <span>{{- link_text -}}</span>
+          </div>
+        {%- else -%}
+          <a
+            class="stacked-text--button"
+            href="{{ link_url }}"
+            data-item="{{- settings.buttons--style -}}"
+            data-text="{{ link_text }}"
+            {% unless settings.transitions--text %}
+              data-transition-item="{{ id }}"
+              data-transition-type="fade-in"
+            {% endunless %}
+            {% unless settings.transitions--buttons %}
+              data-transition-button
+            {% endunless %}
+          >
+            <span>{{- link_text -}}</span>
+          </a>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

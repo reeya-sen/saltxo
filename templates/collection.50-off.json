@@ -1,0 +1,268 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_with_text_6QLpD6": {
+      "type": "image-with-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": false,
+        "spacing-below": false,
+        "background-color": "none",
+        "container-width": "6",
+        "white-text": true,
+        "overlap": false,
+        "heading-type": "section-heading",
+        "text-position": "overlay",
+        "text-horizontal-alignment": "left",
+        "text-vertical-alignment": "center",
+        "text-width": "medium",
+        "text-style": "none",
+        "text-background-color": "transparent",
+        "image-display-type": "x-small",
+        "aspect-ratio": 24,
+        "overlay-style": "darken-bottom",
+        "parallax-enabled": false,
+        "image": "shopify://shop_images/3_90777021-0ea4-407f-907b-9c2ecfee9616.png",
+        "overline": "Take Our Quiz",
+        "title": "Claim Up To 50% Off",
+        "description": "<p>Are you ready to trust pH balancing feminine hygiene? Find your personalized routine based on your feminine hygiene and skincare goals.</p>",
+        "link-url": "shopify://pages/quiz-introduction",
+        "link-text": "Take The Quiz",
+        "mobile-image": "shopify://shop_images/Untitled_design-4.png",
+        "mobile-overlay": true,
+        "mobile-hide-description": false,
+        "mobile-image-display-type": "original",
+        "mobile-aspect-ratio": 134,
+        "mobile-text-alignment": "center"
+      }
+    },
+    "grid_with_overlay_cQxVeX": {
+      "type": "grid-with-overlay",
+      "blocks": {
+        "image_mRDGmg": {
+          "type": "image",
+          "settings": {
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "original",
+            "aspect-ratio": 24,
+            "title": "",
+            "link-url": "",
+            "link-text": ""
+          }
+        },
+        "image_HQ7gwr": {
+          "type": "image",
+          "settings": {
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 56,
+            "title": "Grid image",
+            "link-url": "",
+            "link-text": "Optional link"
+          }
+        },
+        "image_H6jCd9": {
+          "type": "image",
+          "settings": {
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 56,
+            "title": "Grid image",
+            "link-url": "",
+            "link-text": "Optional link"
+          }
+        },
+        "image_RwJDEc": {
+          "type": "image",
+          "settings": {
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 56,
+            "title": "Grid image",
+            "link-url": "",
+            "link-text": "Optional link"
+          }
+        },
+        "image_TdyDPE": {
+          "type": "image",
+          "settings": {
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 56,
+            "title": "Grid image",
+            "link-url": "",
+            "link-text": "Optional link"
+          }
+        },
+        "image_Dh6etg": {
+          "type": "image",
+          "settings": {
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 56,
+            "title": "Grid image",
+            "link-url": "",
+            "link-text": "Optional link"
+          }
+        }
+      },
+      "block_order": [
+        "image_mRDGmg",
+        "image_HQ7gwr",
+        "image_H6jCd9",
+        "image_RwJDEc",
+        "image_TdyDPE",
+        "image_Dh6etg"
+      ],
+      "disabled": true,
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "heading-white-text": false,
+        "container-width": "2",
+        "spacing": true,
+        "width": 6,
+        "white-text": false,
+        "text-style": "none",
+        "heading-type": "overline",
+        "overlay-style": "none",
+        "overline": "",
+        "heading": "",
+        "description": "",
+        "link-url": "",
+        "link-text": "",
+        "mobile-width": "2",
+        "mobile-overlay": true,
+        "mobile-image-display-type": "original",
+        "mobile-aspect-ratio": 134
+      }
+    },
+    "testimonials_GdLFpU": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_yVTwqA": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "2",
+            "author-role": "",
+            "author-name": "500,000+ 5 Star Reviews",
+            "description": "<p>Craved by customers all around the world.</p>"
+          }
+        },
+        "testimonial_6AgzNd": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "2",
+            "author-role": "",
+            "author-name": "All Natural Ingredients",
+            "description": "<p>Made with pH balancing, ultra safe ingredients. </p>"
+          }
+        },
+        "testimonial_eYV9zK": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "2",
+            "author-role": "",
+            "author-name": "Tested By Experts",
+            "description": "<p>Trusted and tested by estheticians and chemists.</p>"
+          }
+        },
+        "testimonial_y8XiyJ": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "2",
+            "author-role": "",
+            "author-name": "Fast Shipping",
+            "description": "<p>Place your order today to receive it within 5-10 BDs.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_yVTwqA",
+        "testimonial_6AgzNd",
+        "testimonial_eYV9zK",
+        "testimonial_y8XiyJ"
+      ],
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "white-text": false,
+        "container-width": "3",
+        "image-shape": "natural",
+        "overline": "",
+        "heading": "",
+        "mobile-width": "1"
+      }
+    },
+    "collection-header": {
+      "type": "collection--header",
+      "disabled": true,
+      "settings": {
+        "show-title": true,
+        "heading-type": "banner-heading",
+        "heading-alignment": "center",
+        "show-description": true,
+        "description-alignment": "with-title",
+        "white-text": true,
+        "show-image": true,
+        "use-image-fallback": true,
+        "image-display-type": "small",
+        "aspect-ratio": 56,
+        "mobile-image-display-type": "x-small",
+        "mobile-aspect-ratio": 134,
+        "text-style": "none",
+        "overlay-style": "darken-bottom",
+        "parallax-enabled": false
+      }
+    },
+    "navigation": {
+      "type": "collection--navigation",
+      "settings": {
+        "show-browse-button": true,
+        "show-sort-button": true,
+        "show-refine-button": true,
+        "show-layout-buttons": true,
+        "show-collections-list": true,
+        "custom-list-collections": "",
+        "show-sort-list": true,
+        "show-refine-list": true,
+        "swatches": "circle",
+        "show-search-link": true
+      }
+    },
+    "main": {
+      "type": "collection--body",
+      "settings": {
+        "products-per-row--desktop": 4,
+        "products-per-row--mobile": "2",
+        "number-of-rows": 12
+      }
+    }
+  },
+  "order": [
+    "image_with_text_6QLpD6",
+    "grid_with_overlay_cQxVeX",
+    "testimonials_GdLFpU",
+    "collection-header",
+    "navigation",
+    "main"
+  ]
+}

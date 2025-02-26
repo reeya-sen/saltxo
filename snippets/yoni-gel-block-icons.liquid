@@ -1,0 +1,81 @@
+{%- liquid
+                assign icon_width = block.settings.icon_width
+                assign icon_image = block.settings.icon_image
+                assign icon_name = block.settings.icon_name
+                assign icon_color = block.settings.icon_color
+                assign width = block.settings.width
+                assign text_size = block.settings.text_size | times: 0.01
+                assign text_alignment = block.settings.text_alignment
+                assign bg_color = block.settings.bg_color
+
+                if icon_image != blank
+                  assign retina_size = icon_width | times: 2
+                  assign image_widths = icon_width | append: ', ' | append: retina_size
+                  assign sizes = icon_width | append: 'px'
+                endif
+              -%}
+
+              {%- capture background_style -%}
+                --bg: {{ bg_color }};
+
+                {%- if bg_color != 'rgba(0,0,0,0)' and bg_color != '' and bg_color != section.settings.bg_color -%}
+                  padding: 5px 10px;
+                {%- endif -%}
+              {%- endcapture -%}
+
+              {%- capture icon_style -%}
+                --icon-size: {{ icon_width }}px;
+
+                {%- if icon_image -%}
+                  --aspect-ratio: {{ 1 | divided_by: icon_image.aspect_ratio | times: 100 | round: 1 }}%;
+                {%- endif -%}
+
+                {%- if icon_color != '' and icon_color != 'rgba(0,0,0,0)' and icon_image == blank -%}
+                  color: {{ icon_color }};
+                {%- endif -%}
+              {%- endcapture -%}
+
+              {%- capture text_style -%}
+                --adjust-body: calc(var(--FONT-ADJUST-BODY) * {{ text_size }});
+              {%- endcapture -%}
+
+              <div class="product__block{% if width == 'half' %} product__block--half{% endif %}"
+                {% if animations_enabled %}
+                  data-aos="hero"
+                  data-aos-anchor="{{ animation_anchor }}"
+                  data-aos-order="{{ animation_order }}"
+                  {%- assign animation_order = animation_order | plus: 1 -%}
+                {% endif %}
+                {{ block_style }}
+                {{ block.shopify_attributes }}>
+                <div class="product__icon__row{% if text_alignment == 'center' %} product__icon__row--center{% endif %}" style="{{ text_style }} {{ background_style }}">
+                  {%- unless icon_image == blank and icon_name == 'none' -%}
+                    <div class="product__icon icon-stroke" style="{{ icon_style }}">
+                      {%- if icon_image != blank -%}
+                        <div class="product__icon__holder">
+                          {%- render 'image',
+                            image: icon_image,
+                            width: retina_size,
+                            widths: image_widths,
+                            sizes: sizes,
+                            classes: 'product__icon__img' -%}
+                        </div>
+                      {%- else -%}
+                        {%- render 'icons', icon: icon_name -%}
+                      {%- endif -%}
+                    </div>
+                  {%- endunless -%}
+
+                  {%- if block.settings.icon_text != blank -%}
+                    <div class="product__icon__text" id="text_size_{{ block.id }}">{{ block.settings.icon_text }}</div>
+                  {%- endif -%}
+                </div>
+              </div>
+ <style>
+   #text_size_{{ block.id }}{
+     font-size:{{  block.settings.text_size  }}%;
+     {% if block.settings.txt_color != blank %}
+     color:{{ block.settings.txt_color }};
+       {% endif %}
+   }
+ </style>  

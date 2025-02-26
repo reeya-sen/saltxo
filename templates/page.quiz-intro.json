@@ -1,0 +1,105 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "show-title": true,
+        "background-color": "none",
+        "white-text": false,
+        "container-width": "4",
+        "spacing-above": true,
+        "spacing-below": true
+      }
+    },
+    "featured_text_hUMWmw": {
+      "type": "featured-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": false,
+        "background-color": "light",
+        "white-text": false,
+        "heading-type": "section-heading",
+        "container-width": "4",
+        "overline": "",
+        "heading": "Where should we start?",
+        "description": "<p>Pssst...your perfect routine is just a few clicks away. Answer a few quick questions and we'll recommend the best products designed for your comfort and care.</p>",
+        "link-url": "/",
+        "link-text": ""
+      }
+    },
+    "grid_with_overlay_xwLkDN": {
+      "type": "grid-with-overlay",
+      "blocks": {
+        "image_7b4xqW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/dce189eac47ae14c7e35d2aa3b29f58c_bed4193f-483b-42c1-af68-0c5807a8f1eb.jpg",
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 100,
+            "title": "Feminine Hygiene",
+            "link-url": "shopify://pages/vaginal-wellness-quiz",
+            "link-text": ""
+          }
+        },
+        "image_3tX3eV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/The_Most_Annoying_Shower_Problems_And_How_to_Fix_Them.jpg",
+            "x-blocks": "1",
+            "y-blocks": "1",
+            "image-display-type": "fill",
+            "aspect-ratio": 56,
+            "title": "Skincare",
+            "link-url": "shopify://pages/self-care-quiz",
+            "link-text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_7b4xqW",
+        "image_3tX3eV"
+      ],
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "heading-white-text": false,
+        "container-width": "2",
+        "spacing": true,
+        "width": 2,
+        "white-text": true,
+        "text-style": "eclipse-shadow",
+        "heading-type": "section-heading",
+        "overlay-style": "darken",
+        "overline": "",
+        "heading": "",
+        "description": "",
+        "link-url": "shopify://pages/vaginal-wellness-quiz",
+        "link-text": "",
+        "mobile-width": "2",
+        "mobile-overlay": true,
+        "mobile-image-display-type": "original",
+        "mobile-aspect-ratio": 134
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_text_hUMWmw",
+    "grid_with_overlay_xwLkDN"
+  ]
+}

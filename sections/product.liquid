@@ -1,0 +1,1342 @@
+{%- liquid
+  assign breadcrumbs_enabled = section.settings.breadcrumbs-enabled
+  assign column_spacing = section.settings.column-spacing
+  assign container_width = section.settings.container-width
+  assign current_variant = product.selected_or_first_available_variant
+  assign heading_sizes_enabled = section.settings.heading-sizes-enabled
+  assign heading_size = section.settings.heading-size
+  assign media_gap = section.settings.media-gap
+  assign media_layout = section.settings.media-layout
+  assign mobile_media_layout = section.settings.mobile-media-layout
+  assign product_id = product.id | append: '-' | append: section.id
+  assign quantity_added = false
+  assign render_size_chart_modal = false
+  assign spacing_above = section.settings.spacing-above
+  assign spacing_below = section.settings.spacing-below
+  assign text_alignment = section.settings.text-alignment
+  assign text_column_width = section.settings.text-column-width
+  assign thumbnail_width = section.settings.thumbnail-width
+  assign variant_scroll_enabled = section.settings.variant-scroll-enabled
+  assign video_looping_enabled = section.settings.loop-enabled
+  assign zoom_enabled = section.settings.image-zoom-enabled
+
+  assign heading_enabled = section.settings.heading-enabled
+  if media_layout == 'thumbnails'
+    assign heading_enabled = false
+  endif
+
+  assign onboarding = true
+  assign modal_enabled = false
+  if product.media.size > 0
+    assign onboarding = false
+    assign modal_enabled = section.settings.modal-enabled
+  endif
+
+  capture css_vars
+    echo '--text-column-width:' | append: text_column_width | append: '%;'
+    echo '--media-gap:' | append: media_gap | append: 'px;'
+    echo '--thumbnail-width:' | append: thumbnail_width | append: 'px;'
+  endcapture
+  
+  assign product_form_id = 'product-form-' | append: section.id
+-%}
+
+<div
+  class="product-page--root"
+  data-product-id="{{ product_id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="product_page"
+  data-container-width="{{ container_width }}"
+  data-spacing-above="{{ spacing_above }}"
+  data-spacing-below="{{ spacing_below }}"
+  data-text-alignment="{{ text_alignment }}"
+  style="{{ css_vars }}"
+>
+  <div class="product-page--wrapper">
+    {%- if heading_enabled -%}
+      <div class="product-page--header" data-mq="medium-large">
+        <h1
+          class="product-page--title"
+          data-item="featured-heading"
+          {%- if heading_sizes_enabled -%}
+            style="--font--featured--size:{{ heading_size | plus: 24 }}px;"
+          {%- endif -%}
+        >
+          {{- product.title -}}
+        </h1>
+      </div>
+    {%- endif -%}
+
+    <div class="product-page--desktop-container" data-mq="medium-large">
+      {%-
+        render 'product-media--variants',
+        product: product,
+        product_id: product_id,
+        layout: media_layout,
+        media_gap: media_gap,
+        media_size: 'desktop',
+        modal_enabled: modal_enabled,
+        column_spacing: column_spacing,
+        thumbs_enabled: true,
+        thumbnail_width: thumbnail_width,
+        variant_scroll_enabled: variant_scroll_enabled,
+        video_looping_enabled: video_looping_enabled,
+        zoom_enabled: zoom_enabled
+      -%}
+    </div>
+
+    <div class="product-page--mobile-container" data-mq="small">
+      {%- if mobile_media_layout == 'thumbnails' -%}
+        {%-
+          render 'product-media--variants',
+          product: product,
+          product_id: product_id,
+          media_size: "mobile",
+          layout: 'thumbnails',
+          thumbs_enabled: true,
+          video_looping_enabled: video_looping_enabled
+        -%}
+
+      {%- elsif mobile_media_layout == 'slideshow' -%}
+        <script type="module">
+          import "{{ 'product-media--carousel.js' | asset_url }}";
+        </script>
+
+        <product-media-carousel
+          class="product-page--carousel"
+          data-id="{{ product_id }}"
+          data-mq="small"
+        >
+          {%
+            render 'carousel',
+            view: "product-page",
+            section_id: section.id,
+            onboarding: onboarding,
+            product: product,
+            video_looping_enabled: video_looping_enabled,
+            blocks: product.media,
+            dot_nav_enabled: true,
+            blocks_per_slide: 1,
+            blocks_per_slide_mobile: 1,
+            total_blocks: product.media.size,
+            total_slides: product.media.size,
+            spacing_around_blocks: true,
+            transition_type: "slide"
+          -%}
+        </product-media-carousel>
+      {%- endif -%}
+    </div>
+
+    {%- form 'product', product, class: 'product-page--form', id: product_form_id -%}
+      {%- if breadcrumbs_enabled -%}
+        <div
+          class="product-page--breadcrumbs"
+          data-mq="medium-large"
+          {% unless settings.transitions--text %}
+            data-transition-item="{{ section.id }}"
+          {% endunless %}
+        >
+          {%- render 'breadcrumbs' -%}
+        </div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign fit_together = false
+          if block.type == 'collapsible-row'
+            assign fit_together = true
+          elsif block.type == 'complementary-products' and block.settings.collapsible-row-enabled
+            assign fit_together = true
+          elsif block.type == 'description' and block.settings.collapsible-row-enabled
+            assign fit_together = true
+          endif
+        -%}
+
+        <div
+          class="product-page--block {% if block.type == 'icon' and block.settings.width == 'half'  %} product-page--block1  {% endif %}"
+          data-product-block
+          data-block-type="{{ block.type }}"
+          data-fit-together="{{ fit_together }}"
+          {{ block.shopify_attributes }}
+        >          
+          {%- case block.type -%}
+            {%- when 'overline' -%}
+              <div class="product-page--overline" data-item="overline">
+                {{- block.settings.text -}}
+                {{- block.settings.richtext -}}
+                
+              </div>
+
+            {%- when 'heading' -%}
+              <div
+                {% unless settings.transitions--text %}
+                  data-transition-cropper
+                  data-transition-item="viewport"
+                  data-transition-type="mask"
+                {% endunless %}
+              >
+                <div>
+                  {%- if heading_enabled -%}
+                    <h2 class="product-page--heading" data-item="section-heading">
+                      {{- product.title -}}
+                    </h2>
+                  {%- else -%}
+                    <h1 class="product-page--heading" data-item="section-heading">
+                      {{- product.title -}}
+                    </h1>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'vendor' -%}
+              <div class="product-page--vendor" data-item="nav-text" data-text-color="gray">
+                <a href="{{ product.vendor | url_for_vendor }}">
+                  {{- product.vendor -}}
+                </a>
+              </div>
+
+            {%- when 'price' -%}
+              {%- render 'product-price', product: product, id: product_id -%}
+              {% if product.available == false %}
+  <a class="klaviyo-bis-trigger shopify-payment-button__button" 
+     href="#" 
+     style="color: black;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            text-decoration: unset;
+            margin-top: 10px;
+            max-width: 100%">
+    NOTIFY ME WHEN AVAILABLE
+  </a>
+{% endif %}
+            {%- when 'low-stock' -%}
+              {%-
+                render 'product-low-stock',
+                id: product_id,
+                current_variant: current_variant,
+                threshold: block.settings.threshold
+              -%}
+
+            {%- when 'options' -%}
+              {%-
+                render "product-options",
+                id: product_id,
+                product: product,
+                block_settings: block.settings
+              -%}
+
+              {%- liquid
+                if block.settings.size-chart-enabled
+                  assign size_chart_option = block.settings.size-chart-option | strip | downcase
+
+                  for option in product.options_with_values
+                    assign option_name = option.name | strip | downcase
+                    if option_name == size_chart_option
+                      if block.settings.size-chart-content == blank
+                        capture size_chart_path
+                          assign size_chart_path_t = 'products.size_chart_path' | t
+                          echo '<code>' | append: size_chart_path_t | append: '</code>'
+                        endcapture
+
+                        assign modal_content = 'products.empty_page_content_html' | t: size_chart_path: size_chart_path
+                      else
+                        assign modal_content = pages[block.settings.size-chart-content].content
+                      endif
+
+                      assign render_size_chart_modal = true
+                      break
+                    endif
+                  endfor
+                endif
+              -%}
+
+            {%- when 'quantity-selector' -%}
+              {%- liquid
+                assign quantity_added = true
+                render 'quantity-selector', id: product_id, type: 'product'
+              -%}
+
+            {%- when 'buy-buttons' -%}
+              {%-
+                render 'product-buy-buttons',
+                id: product_id,
+                product: product,
+                form: form,
+                smart_payment_enabled: block.settings.smart-payment-enabled
+              -%}
+
+            {%- when 'unavailable-form' -%}
+              {%- render 'product-unavailable-form', product: product, id: product_id -%}
+
+            {%- when 'pickup' -%}
+              {%- render 'product-pickup', product: product, id: product_id -%}
+
+            {%- when 'social-sharing' -%}
+              {%-
+                render 'social-icons',
+                align: 'left',
+                mobile_align: 'center',
+                type: 'share',
+                social_settings: block.settings
+              -%}
+
+            {%- when 'sku' -%}
+              {%- render 'product-sku', product: product, id: product_id -%}
+
+            {%- when 'icon' -%}
+             
+            
+            {%- render 'yoni-gel-block-icons', product: product, id: product_id,block:block -%}
+
+             
+            
+            {%- when 'collapsible-row' -%}
+              {%- assign unique_id = section.id | append: '--collapsible-row--' | append: forloop.index -%}
+              {%-
+                render 'collapsible-row',
+                description: block.settings.description,
+                heading: block.settings.heading,
+                default_open: block.settings.default-open,
+                page_content: block.settings.page-content,
+                unique_id: unique_id
+              -%}
+
+            {%- when 'description' -%}
+              {%- unless product.description == blank -%}
+                <div class="product-page--description" data-item="rte-content">
+                  {%- liquid
+                    if block.settings.collapsible-row-enabled
+                      assign unique_id = section.id | append: '-' | append: block.id
+                      render 'collapsible-row', heading: block.settings.heading, description: product.description, unique_id: unique_id
+                    else
+                      echo product.description
+                    endif
+                  -%}
+                </div>
+              {%- endunless -%}
+
+            {%- when 'rating' -%}
+              {%- render 'product-rating' -%}
+
+            {%- when 'complementary-products' -%}
+              {%-
+                render 'complementary-products',
+                heading: block.settings.title,
+                max_products: block.settings.max-products,
+                collapsible_row: block.settings.collapsible-row-enabled,
+                product_id: product.id
+              -%}
+
+            {%- when 'liquid' -%}
+              {{- block.settings.custom-liquid -}}
+
+            {%- when '@app' -%}
+              {%- render block -%}
+            
+            {% when 'skio-plan-picker' %}
+              {% render 'skio-app-block', block: block, product: product %}
+          
+          
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+
+      {%- unless quantity_added -%}
+        <input type="hidden" name="quantity" value="1" min="1" pattern="[0-9]*" tabindex="-1">
+      {%- endunless -%}
+      
+    {%- endform -%}
+
+    {%- if render_size_chart_modal -%}
+      <modal-root
+        class="modal--root"
+        data-id="size-chart"
+        data-background-color="dark"
+        data-translucent="true"
+        data-transition-item="viewport"
+        data-transition-type="fade-in"
+        data-transition-trigger="custom"
+        aria-hidden="true"
+      >
+        <div class="modal--view">
+          <div class="product-size-chart--modal" data-item="rte-content">
+            {{- modal_content -}}
+          </div>
+        </div>
+      </modal-root>
+    {%- endif -%}
+  </div>
+</div>
+
+ <style>
+
+   .product-page--overline p{
+     font-weight:bold;
+   }
+  .product-page--block.product-page--block1{
+      display: inline-block;
+        width: 50%;
+   }
+   
+   .product__icon__row {
+    --icon-size: 25px;
+    --line-height: 1.5625;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius);
+    font-size: calc(1rem* var(--adjust-body));
+    line-height: var(--line-height);
+    align-self: start;
+}
+
+   .product__icon__row.product__icon__row--center{
+         justify-content: center;
+     text-align:center;
+   }
+   
+   .product__icon {
+    min-height: calc(1rem* var(--adjust-body)* var(--line-height));
+    display: flex;
+    flex-basis: var(--icon-size);
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+    color: var(--icon-color);
+}
+ 
+   .lazy-image--cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+   .product__icon__text:not(:only-child) {
+    margin-left: 10px;
+}
+   @media only screen and (max-width: 600px) {
+     .product-page--block.product-page--block1{
+      display: block;
+        width: 100%;
+   }
+     
+    .product__block--half {
+       // display: inline-block;
+       // width: 50%;
+    }
+}
+   
+ </style>  
+
+{% schema %}
+{
+  "name": "Product pages",
+  "class": "section--product-page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Style and layout"
+    },
+    {
+      "id": "container-width",
+      "label": "Maximum width of container",
+      "type": "select",
+      "options": [
+        {
+          "label": "Extra small",
+          "value": "1"
+        },
+        {
+          "label": "Small",
+          "value": "2"
+        },
+        {
+          "label": "Medium",
+          "value": "3"
+        },
+        {
+          "label": "Large",
+          "value": "4"
+        },
+        {
+          "label": "Extra large",
+          "value": "5"
+        },
+        {
+          "label": "Full width",
+          "value": "6"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "id": "spacing-above",
+      "label": "Spacing above",
+      "type": "checkbox",
+      "default": true
+    },
+    {
+      "id": "spacing-below",
+      "label": "Spacing below",
+      "type": "checkbox",
+      "default": true
+    },
+    {
+      "type": "radio",
+      "id": "media-layout",
+      "label": "Media layout",
+      "options": [
+        { "label": "Thumbnails", "value": "thumbnails" },
+        { "label": "One column", "value": "one" },
+        { "label": "Two columns", "value": "two" },
+        { "label": "Mixed", "value": "mixed" }
+      ],
+      "default": "thumbnails"
+    },
+    {
+      "type": "range",
+      "id": "text-column-width",
+      "label": "Text column width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "media-gap",
+      "label": "Gap between media",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "column-spacing",
+      "label": "Media spacing",
+      "options": [
+        { "label": "Spaced evenly", "value": "evenly" },
+        { "label": "Close together", "value": "close" }
+      ],
+      "default": "close",
+      "info": "Applies to the two column and mixed layouts only and will only be obvious when product media has different aspect ratios"
+    },
+    {
+      "id": "text-alignment",
+      "label": "Text alignment",
+      "type": "text_alignment",
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "thumbnail-width",
+      "label": "Thumbnail width",
+      "min": 40,
+      "max": 140,
+      "step": 1,
+      "unit": "px",
+      "default": 80,
+      "info": "Only applies to the thumbnails layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading-enabled",
+      "label": "Enable title overlay",
+      "default": false,
+      "info": "Not applicable to the thumbnails layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading-sizes-enabled",
+      "label": "Enable overlay title size",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "heading-size",
+      "label": "Overlay title size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "breadcrumbs-enabled",
+      "label": "Enable breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "modal-enabled",
+      "label": "Enable modal popup",
+      "default": true,
+      "info": "Triggers when you click the selected media"
+    },
+    {
+      "type": "checkbox",
+      "id": "variant-scroll-enabled",
+      "label": "Enable scroll to variant media",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "image-zoom-enabled",
+      "label": "Enable image zoom",
+      "default": true,
+      "info": "Triggers when you roll your mouse over an image"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop-enabled",
+      "label": "Enable video looping",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)."
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "radio",
+      "id": "mobile-media-layout",
+      "label": "Media layout",
+      "options": [
+        { "label": "Slideshow", "value": "slideshow" },
+        { "label": "Thumbnails", "value": "thumbnails" }
+      ],
+      "default": "slideshow"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "overline",
+      "name": "Overline text",
+      "limit": 1,
+      "settings": [
+        {
+          "label": "Overline text",
+          "id": "text",
+          "type": "text",
+          "default": "Overline text"
+        },{
+          "label": "Overline text",
+          "id": "richtext",
+          "type": "richtext"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Title",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "quantity-selector",
+      "name": "Quantity selector",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "low-stock",
+      "name": "Low stock notice",
+      "limit": 1,
+      "settings": [
+        {
+          "label": "Show low in stock notice when quantity is",
+          "id": "threshold",
+          "type": "range",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "default": 5,
+          "info": "Set to 0 to disable this feature. Updated for each variant."
+        }
+      ]
+    },
+    {
+      "type": "options",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "variant-style",
+          "label": "Product variant style",
+          "options": [
+            { "label": "Dropdowns", "value": "dropdowns" },
+            { "label": "Buttons", "value": "buttons" }
+          ],
+          "default": "buttons"
+        },
+        {
+          "type": "select",
+          "id": "swatches",
+          "label": "Swatches",
+          "options": [
+            { "label": "Circle", "value": "circle" },
+            { "label": "Square", "value": "square" },
+            { "label": "None", "value": "none" }
+          ],
+          "default": "circle",
+          "info": "Connect options to swatch colors or images using Shopify metafields. [Learn more](https://help.shopify.com/en/manual/custom-data/metafields/category-metafields/using-category-metafields)"
+        },
+        {
+          "type": "header",
+          "content": "Size chart"
+        },
+        {
+          "type": "checkbox",
+          "id": "size-chart-enabled",
+          "label": "Enable",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "size-chart-option",
+          "label": "Link from option",
+          "default": "size"
+        },
+        {
+          "type": "page",
+          "id": "size-chart-content",
+          "label": "Page content"
+        }
+      ]
+    },
+    {
+      "type": "buy-buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "smart-payment-enabled",
+          "label": "Show dynamic checkout button",
+          "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Image",
+          "info": "If set overrides the icon above"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "label": "Width",
+          "min": 20,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Heading",
+          "default": "Free shipping over $99"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Size",
+          "default": 90,
+          "min": 50,
+          "max": 125,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "default": "full",
+          "options": [
+            { "label": "Wide", "value": "full" },
+            { "label": "Half", "value": "half" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Alignment",
+          "default": "left",
+          "options": [
+            { "label": "Center", "value": "center" },
+            { "label": "Left", "value": "left" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "txt_color",
+          "label": "Text color",
+          "default":"#000"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color"
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "unavailable-form",
+      "name": "Unavailable form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Displays when a selected variant is not available."
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "name": "Pickup availability",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Allow your customers to see availability in retail stores by [setting up local pickup.](https://help.shopify.com/en/manual/sell-in-person/shopify-pos/order-management/local-pickup-for-online-orders)"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "collapsible-row-enabled",
+          "label": "Show as collapsible row",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Collapsible row heading",
+          "default": "Description"
+        }
+      ]
+    },
+    {
+      "type": "social-sharing",
+      "name": "Social sharing",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "facebook-enabled",
+          "label": "Enable Facebook sharing",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "x-enabled",
+          "label": "Enable 𝕏 sharing",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "pinterest-enabled",
+          "label": "Enable Pinterest sharing",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "email-enabled",
+          "label": "Enable email sharing",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "url-enabled",
+          "label": "Enable URL sharing",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "sku",
+      "name": "SKU",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "collapsible-row",
+      "name": "Collapsible row",
+      "settings": [
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "Collapsible row"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Text",
+          "default": "<p>Use rows to highlight unique features, <br/>sizing information, <br/>or other sales information.</p>",
+          "info": "You can use product metafields to assign content to this row that is unique to an individual product. Learn more about [metafields](https://help.shopify.com/en/manual/metafields/displaying-metafields-on-your-online-store)."
+        },
+        {
+          "type": "page",
+          "id": "page-content",
+          "label": "Tab content from page"
+        },
+        {
+          "type": "checkbox",
+          "id": "default-open",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "rating",
+      "name": "Product rating",
+      "limit": 1
+    },
+    {
+      "type": "complementary-products",
+      "name": "Complementary products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Pairs well with"
+        },
+        {
+          "id": "max-products",
+          "label": "Maximum products to show",
+          "type": "range",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 2,
+          "info": "To select complementary products, add the Search & Discovery app. [Learn more](https://shopify.dev/themes/product-merchandising/recommendations)"
+        },
+        {
+          "type": "checkbox",
+          "id": "collapsible-row-enabled",
+          "label": "Show as collapsible row",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom-liquid",
+          "label": "Custom Liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "skio-plan-picker",
+      "name": "Skio Plan Picker",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "[Integration Guide](https://integrate.skio.com)"
+        },
+        {
+          "type": "liquid",
+          "id": "form_id",
+          "label": "Form ID",
+          "info": "This should match the ID of the add to cart form. Set to the default for Dawn themes. Accepts liquid.",
+          "default": "product-form-{{section.id}}"
+        },
+        {
+          "type": "liquid",
+          "id": "external_price_selector",
+          "label": "External Price Selector to update display price on plan change",
+          "info": "This should match the ID or class of the price element. Set to the default for Dawn themes. Accepts liquid. For multiple items, separate each by a comma.",
+          "default": ".price-item--regular"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_details",
+          "label": "Display \"How do subscriptions work?\" details element",
+          "info": "Display \"How do subscriptions work?\" details element, with the default copy / display settings. Turn this off to use a custom details element.",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_without_subscription",
+          "label": "Diplay widget without subscriptions",
+          "info": "Display one time purchase if no subscriptions are available. This does not affect functionality.",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_compare_price",
+          "label": "Show compare at price",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Style settings",
+          "info": "Customize the plan picker to match your site's feel"
+        },
+        {
+          "type": "liquid",
+          "id": "legend_content",
+          "label": "Section title",
+          "default": "Select subscription plan"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_legend",
+          "label": "Show section title",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Widget layout",
+          "options": [
+            {
+              "value": "vertical",
+              "label": "Vertical"
+            },
+            {
+              "value": "horizontal",
+              "label": "Horizontal"
+            },
+            {
+              "value": "hidden",
+              "label": "Hidden"
+            }
+          ],
+          "default": "vertical"
+        },
+        {
+          "type": "select",
+          "id": "dropdownPosition",
+          "label": "Frequency position",
+          "options": [
+            {
+              "value": "inside",
+              "label": "Inside group"
+            },
+            {
+              "value": "underneath",
+              "label": "Underneath group"
+            },
+            {
+              "value": "hidden",
+              "label": "Hidden"
+            }
+          ],
+          "default": "inside"
+        },
+        {
+          "type": "liquid",
+          "id": "additional_frequency_label",
+          "label": "Additional Frequency Label",
+          "info": "Add additional label to be shown above the Frequency selector"
+        },
+        {
+          "type": "checkbox",
+          "id": "start_onetime",
+          "label": "Default to one time purchase",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "onetime_first",
+          "label": "Display one time purchase first",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "group_border_radius",
+          "label": "Plan option border radius",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "group_border_width",
+          "label": "Plan option border width",
+          "min": 0,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "default": 2
+        },
+        {
+          "type": "color",
+          "id": "group_border_color",
+          "label": "Plan option border color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "group_border_selected_color",
+          "label": "Plan option selected border color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "group_background_color",
+          "label": "Plan option background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "selected_group_background_color",
+          "label": "Plan option selected background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "group_text_color",
+          "label": "Plan option text color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "group_selected_text_color",
+          "label": "Plan option selected text color",
+          "default": "#000"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_radio_selector",
+          "label": "Show radio selector",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "onetime_title",
+          "label": "One time purchase title",
+          "default": "One time purchase"
+        },
+        {
+          "type": "text",
+          "id": "subscription_title",
+          "label": "Subscription title",
+          "default": "Subscribe"
+        },
+        {
+          "type": "text",
+          "id": "prepaid_title",
+          "label": "Prepaid title",
+          "default": "Prepaid"
+        },
+        {
+          "type": "radio",
+          "id": "discount_format",
+          "label": "Displayed Discount Format",
+          "options": [
+            {
+              "value": "percent",
+              "label": "Percent"
+            },
+            {
+              "value": "absolute",
+              "label": "Absolute"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "radio",
+          "id": "discount_style",
+          "label": "Discount Style",
+          "options": [
+            {
+              "value": "bubble",
+              "label": "Bubble"
+            },
+            {
+              "value": "text",
+              "label": "Text"
+            }
+          ],
+          "default": "bubble"
+        },
+        {
+          "type": "liquid",
+          "id": "discount_text",
+          "label": "Discount text",
+          "default": "Save [discount]",
+          "info": "Use [discount] to display the discount amount. Can also use [future_price_adjustments] to display future price adjustments from the field below"
+        },
+        {
+          "type": "color",
+          "id": "discount_color",
+          "label": "Discount Background Color",
+          "default": "#0fa573"
+        },
+        {
+          "type": "color",
+          "id": "discount_text_color",
+          "label": "Discount Text Color",
+          "default": "#fff"
+        },
+        {
+          "type": "liquid",
+          "id": "additional_subscription_content",
+          "label": "Additional Subscription Content",
+          "info": "Add additional information to be displayed under Subscription options. Works with HTML. Accepts [discount] and [future_price_adjustments] to display the discount and future price adjustments respectively."
+        },
+        {
+          "type": "select",
+          "id": "selector_type",
+          "label": "Interval selector type",
+          "options": [
+            {
+              "value": "hidden",
+              "label": "Hidden"
+            },
+            {
+              "value": "dropdown",
+              "label": "Dropdown"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ],
+          "default": "dropdown"
+        },
+        {
+          "type": "range",
+          "id": "button_plan_selector_width",
+          "label": "Button plan selector width",
+          "min": 20,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "default": 100
+        },
+        {
+          "type": "header",
+          "content": "Configuration Settings",
+          "info": "Customize the functionality of the skio plan picker"
+        },
+        {
+          "type": "text",
+          "id": "default_subscription",
+          "label": "Default selected subscription",
+          "info": "Enter the name of the subscription you want to be selected by default. Leave blank to select the first subscription. (e.g. '3 months')"
+        },
+        {
+          "type": "liquid",
+          "id": "future_price_adjustments_text",
+          "label": "Future price adjustment text",
+          "info": "Edit the text you want to display for future price adjustments. You can use [discount] and [order_count] or [order_count_ordinal] to display the discount and order count respectively. (e.g. 'Then save [discount] after order [order_count]')",
+          "default": "<small>Then [discount] off after the [order_count_ordinal] order</small>"
+        },
+        {
+          "type": "header",
+          "content": "Advanced Settings",
+          "info": "Only use the following features if you are a developer"
+        },
+        {
+          "type": "text",
+          "id": "element_name",
+          "label": "Element Name",
+          "info": "Create an element using a different name, useful when creating extensions",
+          "default": "skio-plan-picker"
+        },
+        {
+          "type": "product",
+          "id": "product_handle",
+          "label": "Product",
+          "info": "Useful on landing pages, on product pages the product is automatically detected"
+        },
+        {
+          "type": "checkbox",
+          "id": "combine_groups",
+          "label": "Combine Groups",
+          "info": "Display all plans in one group",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "combined_group_name",
+          "label": "Combined Group Name",
+          "info": "Name of the combined group. (display only)",
+          "default": "Subscription"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

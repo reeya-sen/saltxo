@@ -1,0 +1,18 @@
+<script>
+// Wait for the page to load
+document.addEventListener("DOMContentLoaded", function() {
+  // Set an interval to check if the button is available
+  var intervalId = setInterval(function() {
+    var checkoutButton = document.querySelector('.product-buy-buttons--primary');
+    
+    // Check if the button is found
+    if (checkoutButton) {
+      // Add the name attribute to the button
+      checkoutButton.setAttribute('name', 'add');
+      
+      // Stop the interval since we have added the attribute
+      clearInterval(intervalId);
+    }
+  }, 1000); // Check every 1000 milliseconds (1 second)
+});
+</script>

@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {
+        "show-title": false,
+        "background-color": "none",
+        "white-text": false,
+        "container-width": "1",
+        "spacing-above": false,
+        "spacing-below": true
+      }
+    },
+    "16324732989269ca2c": {
+      "type": "featured-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": false,
+        "background-color": "light",
+        "white-text": false,
+        "heading-type": "banner-heading",
+        "container-width": "6",
+        "overline": "Founder's Note",
+        "heading": "Jhalesa Seymour, Founder & CEO",
+        "description": "",
+        "link-url": "/",
+        "link-text": ""
+      }
+    },
+    "image_with_text_6bcPgf": {
+      "type": "image-with-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "container-width": "5",
+        "white-text": false,
+        "overlap": false,
+        "heading-type": "section-heading",
+        "text-position": "right",
+        "text-horizontal-alignment": "center",
+        "text-vertical-alignment": "center",
+        "text-width": "large",
+        "text-style": "none",
+        "text-background-color": "transparent",
+        "image-display-type": "large",
+        "aspect-ratio": 56,
+        "overlay-style": "darken-bottom",
+        "parallax-enabled": false,
+        "image": "shopify://shop_images/SALT.XO4-5-24-190_Large_1ee9613c-83cb-49bd-9baf-de3594e1ae29.jpg",
+        "overline": "",
+        "title": "",
+        "description": "<p>Like many others, I always dreamed of owning my own company one day. The idea of being my own boss was appealing to me, but it was the understanding of what being an entrepreneur can do, like affording me the luxury of changing and empowering the lives of those around me that really motivated me. </p><p><br/>I often tell people that I didn’t find Salt.xo, Salt.xo found me. Not once did I ever think my business would be skincare or that I’d be remotely involved in this industry. Though skin care was always a passion of mine, I never knew it was apart of my purpose. Salt.xo was birthed from me living in a state of discovery. Prior to starting the company, or even making a product, I spent 7 months researching and studying natural ingredients and it’s healing properties in skin and hair, and of course - the yoni.<br/><br/>I developed a true love for natural soaps in the process. From my first few experiences, I decided I wanted to get away from all the harsh chemicals and cancerous ingredients and go au naturalle. It was in this I had the idea to create my own. Hence, the birth of Salt.Xo.<br/><br/>I was a college student in my senior year at UCF when I decided to start a business. As you can imagine, being a college student I didn’t have a lot of money to invest in my company. I only had $67 dollars to be exact. I didn’t let that discourage me. My grandfather always taught me to start now with what you have, make something out of it, never be satisfied. And I did just that. I took the initial seed of investment and started making soaps in sample sizes. Making everything in my kitchen.<br/><br/>After a few takes, I promoted my first soap on Facebook in April of 2018. My family and close friends rallied behind me in a great wave of support and helped me promote my new soap line. The support was mind-blowing as it went from being my friends and family to people I didn’t even know. My #saltbaes.<br/><br/>I started off with 200 followers on Instagram and within a year, with your help, love, reviews, and support, we have grown our family to over 170,000. I am humbled by the outpouring of love from all of you. I would like to thank my family for believing in me, my love for supporting me, and most importantly, I thank God for giving me this vision.</p>",
+        "link-url": "",
+        "link-text": "",
+        "mobile-overlay": false,
+        "mobile-hide-description": false,
+        "mobile-image-display-type": "small",
+        "mobile-aspect-ratio": 134,
+        "mobile-text-alignment": "center"
+      }
+    },
+    "featured_collection_brHaBt": {
+      "type": "featured-collection",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "featured-collection--image--show": false,
+        "featured-collection--description--show": false,
+        "background-color": "none",
+        "white-text": false,
+        "display-type": "slideshow",
+        "products-per-row--desktop": "4",
+        "products-per-row--mobile": "2",
+        "collection": "intimate",
+        "max-products": 6,
+        "heading": "Founder's Favorites"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16324732989269ca2c",
+    "image_with_text_6bcPgf",
+    "featured_collection_brHaBt"
+  ]
+}

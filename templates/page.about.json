@@ -1,0 +1,226 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "settings": {
+        "show-title": false,
+        "background-color": "none",
+        "white-text": false,
+        "container-width": "1",
+        "spacing-above": false,
+        "spacing-below": true
+      }
+    },
+    "16324732989269ca2c": {
+      "type": "featured-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": false,
+        "background-color": "light",
+        "white-text": false,
+        "heading-type": "featured-heading",
+        "container-width": "3",
+        "overline": "",
+        "heading": "When it comes to feminine hygiene, we believe gentle is powerful.",
+        "image_width": 100,
+        "image_link": "",
+        "description": "",
+        "link-url": "/",
+        "link-text": ""
+      }
+    },
+    "163247330191cc65e8": {
+      "type": "image-with-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "container-width": "5",
+        "white-text": false,
+        "overlap": false,
+        "heading-type": "section-heading",
+        "text-position": "left",
+        "text-horizontal-alignment": "center",
+        "text-vertical-alignment": "center",
+        "text-width": "large",
+        "text-style": "none",
+        "text-background-color": "transparent",
+        "image-display-type": "medium",
+        "aspect-ratio": 56,
+        "overlay-style": "darken-bottom",
+        "parallax-enabled": false,
+        "image": "shopify://shop_images/SALT.XO4-5-24-199_Large_5e36cc68-8fb8-4ae2-b06b-a1bb3ed90296.jpg",
+        "overline": "Founder's Note",
+        "title": "Breaking Boundaries in Feminine Care",
+        "description": "<p>\"Hi! I'm Jhalesa Lewis, Founder/CEO here at Salt.xo. I often tell people that I didn’t find Salt.xo, Salt.xo found me. Salt.xo was birthed from me living in a state of discovery. Prior to starting the company, or even making a product, I spent 7 months researching and studying natural ingredients and it’s healing properties in skin and hair, and of course - the yoni.\"</p>",
+        "link-url": "",
+        "link-text": "",
+        "mobile-overlay": false,
+        "mobile-hide-description": false,
+        "mobile-image-display-type": "small",
+        "mobile-aspect-ratio": 134,
+        "mobile-text-alignment": "center"
+      }
+    },
+    "testimonials_PDhnMA": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_PqwtND": {
+          "type": "testimonial",
+          "settings": {
+            "image_svg": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-heart\" viewbox=\"0 0 82 82\"><path d=\"M41.015 14.742C27.191-11.367-3.113 6.153 2.742 35.739c5.73 28.951 38.274 44.26 38.274 44.26s32.547-15.31 38.273-44.26c5.854-29.586-24.446-47.106-38.274-20.997Z\"></path></svg>",
+            "icon": "none",
+            "author-role": "",
+            "author-name": "Your Trusty #1",
+            "description": "<p>Voted the top feminine hygiene brand by women who know what’s up.</p>"
+          }
+        },
+        "testimonial_dpwB4y": {
+          "type": "testimonial",
+          "settings": {
+            "image_svg": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-key\" viewbox=\"0 0 49 82\"><path d=\"M30.058 26.426H18.486a9.307 9.307 0 0 1 0-18.614h11.572a9.307 9.307 0 0 1 0 18.614Z\"></path><path d=\"M31.522 32.452c8.468 0 15.333-6.865 15.333-15.333S39.99 1.786 31.522 1.786H17.021c-8.468 0-15.333 6.865-15.333 15.333s6.865 15.333 15.333 15.333h3.283v43.366a3.968 3.968 0 1 0 7.936 0v-2.344h5.727v-5.457H28.24v-5.212h5.727v-5.457H28.24V32.452h3.282Z\"></path></svg>",
+            "icon": "none",
+            "author-role": "",
+            "author-name": "The Only Fem Care You Need",
+            "description": "<p>Say goodbye to endless aisles of iffy products. We've got the golden ticket right here.</p>"
+          }
+        },
+        "testimonial_Mbtjm7": {
+          "type": "testimonial",
+          "settings": {
+            "image_svg": "<svg aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-eco-friendly\" viewbox=\"0 0 82 82\"><path d=\"M55.751 44.921c8.592-14.035 27.427-4.617 23.788 11.287C75.978 71.77 55.751 80 55.751 80s-20.229-8.23-23.788-23.792c-3.639-15.904 15.194-25.323 23.788-11.287Z\"></path><path d=\"M73.656 40.142c.047-.751.071-1.509.071-2.272C73.726 18.06 57.67 2 37.863 2S2 18.06 2 37.87c0 19.811 16.056 35.87 35.863 35.87a36.13 36.13 0 0 0 6.006-.501\"></path><path d=\"M27.249 3.637s10.498 7.661 5.503 14.39c-4.995 6.729-5.912 8.462-6.218 14.987-.306 6.525-1.771 19.86-21.425 19.207M52.176 5.104s-11.495 5.174-8.539 12.719c2.956 7.544 7.819 3.101 12.13 7.035 5.81 5.302 12.48 3.658 15.937 1.725\"></path></svg>",
+            "icon": "none",
+            "author-role": "",
+            "author-name": "pH-Friendly Perfection",
+            "description": "<p>Our formulas are gentle giants—tough on odors, soft on your most sensitive areas.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_PqwtND",
+        "testimonial_dpwB4y",
+        "testimonial_Mbtjm7"
+      ],
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "none",
+        "white-text": false,
+        "container-width": "5",
+        "image-shape": "natural",
+        "overline": "",
+        "heading": "The Secret Is Salt.Xo",
+        "mobile-width": "2"
+      }
+    },
+    "image_with_text_6bcPgf": {
+      "type": "image-with-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "container-width": "5",
+        "white-text": false,
+        "overlap": false,
+        "heading-type": "section-heading",
+        "text-position": "right",
+        "text-horizontal-alignment": "center",
+        "text-vertical-alignment": "center",
+        "text-width": "large",
+        "text-style": "none",
+        "text-background-color": "transparent",
+        "image-display-type": "medium",
+        "aspect-ratio": 56,
+        "overlay-style": "darken-bottom",
+        "parallax-enabled": false,
+        "image": "shopify://shop_images/2_a82ff9a9-77a9-4fd6-9af4-674ceacebfc7.png",
+        "overline": "Try For Yourself",
+        "title": "Why We Do What We Do",
+        "description": "<p>Gone are the days of hushed voices and closed doors when it comes to feminine care. We’re here to shake things up. Salt.xo is your safe, stigma-free zone where every product is a testament to our commitment to fearless, fun, and honest feminine hygiene.</p>",
+        "link-url": "",
+        "link-text": "",
+        "mobile-overlay": false,
+        "mobile-hide-description": false,
+        "mobile-image-display-type": "small",
+        "mobile-aspect-ratio": 134,
+        "mobile-text-alignment": "center"
+      }
+    },
+    "image_with_text_RQHCwQ": {
+      "type": "image-with-text",
+      "custom_css": [],
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "accent-1",
+        "container-width": "4",
+        "white-text": true,
+        "overlap": false,
+        "heading-type": "section-heading",
+        "text-position": "left",
+        "text-horizontal-alignment": "center",
+        "text-vertical-alignment": "center",
+        "text-width": "large",
+        "text-style": "none",
+        "text-background-color": "transparent",
+        "image-display-type": "original",
+        "aspect-ratio": 24,
+        "overlay-style": "none",
+        "parallax-enabled": false,
+        "image": "shopify://shop_images/Group_1_09fd444b-b86a-419a-bdb1-f6dda1bb25c1.jpg",
+        "overline": "Salt.Xo VS The Rest",
+        "title": "Time to Switch",
+        "description": "<p>We're not just another option; we're the better choice. Say goodbye to harsh chemicals, questionable formulas, and one-size-fits-all solutions. With Salt.xo, step into a world where every product is crafted, keeping you in mind—from our gentle gels to our soothing bars. Need more convincing? Here's a glimpse of how we stack up against the rest:</p>",
+        "link-url": "",
+        "link-text": "",
+        "mobile-overlay": false,
+        "mobile-hide-description": false,
+        "mobile-image-display-type": "small",
+        "mobile-aspect-ratio": 134,
+        "mobile-text-alignment": "center"
+      }
+    },
+    "featured_blog_9KUR4P": {
+      "type": "featured-blog",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "none",
+        "white-text": false,
+        "container-width": "4",
+        "tag-select": "pinned",
+        "show-cta": true,
+        "show-date": true,
+        "show-excerpt": true,
+        "blog": "healthy-vaginas-club",
+        "blog-heading": "Blog posts",
+        "heading-alignment": "center",
+        "view-more-text": "View more"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16324732989269ca2c",
+    "163247330191cc65e8",
+    "testimonials_PDhnMA",
+    "image_with_text_6bcPgf",
+    "image_with_text_RQHCwQ",
+    "featured_blog_9KUR4P"
+  ]
+}

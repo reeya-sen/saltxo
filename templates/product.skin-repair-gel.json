@@ -1,0 +1,437 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "options": {
+          "type": "options",
+          "disabled": true,
+          "settings": {
+            "variant-style": "dropdowns",
+            "swatches": "circle",
+            "size-chart-enabled": true,
+            "size-chart-option": "size",
+            "size-chart-content": ""
+          }
+        },
+        "skio_plan_picker_RkQinF": {
+          "type": "skio-plan-picker",
+          "settings": {
+            "form_id": "product-form-{{section.id}}",
+            "external_price_selector": "[data-block-type=\"price\"] .product-price--original",
+            "show_details": false,
+            "show_without_subscription": false,
+            "show_compare_price": true,
+            "legend_content": "Purchase Options",
+            "show_legend": true,
+            "layout": "vertical",
+            "dropdownPosition": "inside",
+            "additional_frequency_label": "",
+            "start_onetime": true,
+            "onetime_first": true,
+            "group_border_radius": 6,
+            "group_border_width": 2,
+            "group_border_color": "#feede8",
+            "group_border_selected_color": "#d02e2e",
+            "group_background_color": "rgba(0,0,0,0)",
+            "selected_group_background_color": "rgba(0,0,0,0)",
+            "group_text_color": "#000000",
+            "group_selected_text_color": "#000000",
+            "show_radio_selector": true,
+            "onetime_title": "One-time",
+            "subscription_title": "Subscribe",
+            "prepaid_title": "Prepaid",
+            "discount_format": "percent",
+            "discount_style": "bubble",
+            "discount_text": "Save [discount]",
+            "discount_color": "#d02e2e",
+            "discount_text_color": "#ffffff",
+            "additional_subscription_content": "",
+            "selector_type": "dropdown",
+            "button_plan_selector_width": 100,
+            "default_subscription": "",
+            "future_price_adjustments_text": "<small>Then [discount] off after the [order_count_ordinal] order</small>",
+            "element_name": "skio-plan-picker",
+            "product_handle": "",
+            "combine_groups": false,
+            "combined_group_name": "Subscription"
+          }
+        },
+        "buy-buttons": {
+          "type": "buy-buttons",
+          "settings": {
+            "smart-payment-enabled": true
+          }
+        },
+        "afterpay_on_site_messaging_payments_messaging_kjLYAh": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "center",
+            "margin_top": 16,
+            "margin_bottom": 16,
+            "color": "",
+            "size": "xs",
+            "intro_text": "or",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "compact-badge",
+            "logo_theme": "white-on-black",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": true,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapsible-row-enabled": false,
+            "heading": "Description"
+          }
+        },
+        "overline_jBYxnP": {
+          "type": "overline",
+          "settings": {
+            "text": "",
+            "richtext": "<p><strong>Why You'll Love Our</strong> {{ product.title }}</p>"
+          }
+        },
+        "icon_dbXtYW": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "{{ product.metafields.product_highlights.icon_feauture_1.value }}",
+            "icon_width": 20,
+            "icon_text": "{{ product.metafields.product_highlights.feature_1.value }}",
+            "text_size": 110,
+            "width": "half",
+            "text_alignment": "left",
+            "txt_color": "#000000",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "icon_rffJd8": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "{{ product.metafields.product_highlights.icon_feature_2.value }}",
+            "icon_width": 20,
+            "icon_text": "{{ product.metafields.product_highlights.feature_2.value }}",
+            "text_size": 110,
+            "width": "half",
+            "text_alignment": "left",
+            "txt_color": "#000000",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "icon_MwwXRn": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "{{ product.metafields.product_highlights.icon_feature_3.value }}",
+            "icon_width": 20,
+            "icon_text": "{{ product.metafields.product_highlights.feature_3.value }}",
+            "text_size": 110,
+            "width": "half",
+            "text_alignment": "left",
+            "txt_color": "#000000",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "icon_FCrKaw": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "{{ product.metafields.product_highlights.icon_feature_4.value }}",
+            "icon_width": 20,
+            "icon_text": "{{ product.metafields.product_highlights.feature_4.value }}",
+            "text_size": 110,
+            "width": "half",
+            "text_alignment": "left",
+            "txt_color": "#000000",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "icon_XfNj6N": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "{{ product.metafields.product_highlights.icon_feature_5.value }}",
+            "icon_width": 20,
+            "icon_text": "{{ product.metafields.product_highlights.feature_5.value }}",
+            "text_size": 110,
+            "width": "half",
+            "text_alignment": "left",
+            "txt_color": "#000000",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "icon_z4G7hz": {
+          "type": "icon",
+          "settings": {
+            "icon_image": "{{ product.metafields.product_highlights.icon_feature_6.value }}",
+            "icon_width": 20,
+            "icon_text": "{{ product.metafields.product_highlights.feature_6.value }}",
+            "text_size": 110,
+            "width": "half",
+            "text_alignment": "left",
+            "txt_color": "#000000",
+            "bg_color": "",
+            "padding_bottom": 20
+          }
+        },
+        "complementary-products": {
+          "type": "complementary-products",
+          "disabled": true,
+          "settings": {
+            "title": "Pairs well with",
+            "max-products": 2,
+            "collapsible-row-enabled": false
+          }
+        },
+        "social-sharing": {
+          "type": "social-sharing",
+          "disabled": true,
+          "settings": {
+            "facebook-enabled": true,
+            "x-enabled": true,
+            "pinterest-enabled": true,
+            "email-enabled": true,
+            "url-enabled": true
+          }
+        },
+        "collapsible_row_ED8JBJ": {
+          "type": "collapsible-row",
+          "settings": {
+            "heading": "Benefits",
+            "description": "<p>{{ product.metafields.product.details | metafield_tag }}</p>",
+            "page-content": "",
+            "default-open": false
+          }
+        },
+        "collapsible_row_mUUJPN": {
+          "type": "collapsible-row",
+          "settings": {
+            "heading": "Ingredients",
+            "description": "<p>{{ product.metafields.custom.key_ingredients | metafield_tag }}</p>",
+            "page-content": "",
+            "default-open": false
+          }
+        },
+        "collapsible_row_rryCtM": {
+          "type": "collapsible-row",
+          "settings": {
+            "heading": "How To Use",
+            "description": "<p>{{ product.metafields.custom.how_it_works | metafield_tag }}</p>",
+            "page-content": "",
+            "default-open": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "price",
+        "options",
+        "skio_plan_picker_RkQinF",
+        "buy-buttons",
+        "afterpay_on_site_messaging_payments_messaging_kjLYAh",
+        "description",
+        "overline_jBYxnP",
+        "icon_dbXtYW",
+        "icon_rffJd8",
+        "icon_MwwXRn",
+        "icon_FCrKaw",
+        "icon_XfNj6N",
+        "icon_z4G7hz",
+        "complementary-products",
+        "social-sharing",
+        "collapsible_row_ED8JBJ",
+        "collapsible_row_mUUJPN",
+        "collapsible_row_rryCtM"
+      ],
+      "settings": {
+        "container-width": "4",
+        "spacing-above": true,
+        "spacing-below": true,
+        "media-layout": "thumbnails",
+        "text-column-width": 44,
+        "media-gap": 2,
+        "column-spacing": "close",
+        "text-alignment": "left",
+        "thumbnail-width": 104,
+        "heading-enabled": true,
+        "heading-sizes-enabled": true,
+        "heading-size": 0,
+        "breadcrumbs-enabled": false,
+        "modal-enabled": false,
+        "variant-scroll-enabled": false,
+        "image-zoom-enabled": false,
+        "loop-enabled": true,
+        "mobile-media-layout": "slideshow"
+      }
+    },
+    "featured_text_BCYJxM": {
+      "type": "featured-text",
+      "custom_css": [
+        "p {font-size: 12px;}"
+      ],
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "light",
+        "white-text": false,
+        "heading-type": "section-heading",
+        "container-width": "3",
+        "overline": "Fights Bacteria ✔️ Reduces Hyperpigmentation ✔️ Maintains a healthy pH ✔️",
+        "heading": "Trusted by over 500,000+ Customers",
+        "image_picker": "shopify://shop_images/Asset_188.svg",
+        "image_width": 220,
+        "image_link": "",
+        "description": "<p>{{ product.metafields.product.details | metafield_tag }}</p><p></p>",
+        "link-url": "/",
+        "link-text": ""
+      }
+    },
+    "featured_text_cGTzTK": {
+      "type": "featured-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "accent-1",
+        "white-text": true,
+        "heading-type": "section-heading",
+        "container-width": "3",
+        "overline": "",
+        "heading": "Skin Repair Gel IRL",
+        "image_width": 100,
+        "image_link": "",
+        "description": "",
+        "link-url": "/",
+        "link-text": ""
+      }
+    },
+    "1728251869bcf29d9d": {
+      "type": "apps",
+      "blocks": {
+        "videowise_video_platform_ugc_videowise_page_widgets_FXxUHt": {
+          "type": "shopify://apps/videowise-video-commerce/blocks/videowise-page-widgets/b48d6c0c-3e3f-4791-a9ab-a5ab7ec82f4d",
+          "settings": {
+            "videowise_embed": "<div class=\"reeview-app-widget\" id=\"reeview-app-widget_66211a6a5d830f002a599435\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "videowise_video_platform_ugc_videowise_page_widgets_FXxUHt"
+      ],
+      "settings": {
+        "background-color": "accent-1",
+        "white-text": false,
+        "container-width": "4",
+        "top-border": false,
+        "spacing-above": false,
+        "spacing-below": true
+      }
+    },
+    "image_with_text_htRLFY": {
+      "type": "image-with-text",
+      "settings": {
+        "top-border": false,
+        "spacing-above": false,
+        "spacing-below": false,
+        "background-color": "none",
+        "container-width": "6",
+        "white-text": false,
+        "overlap": true,
+        "heading-type": "section-heading",
+        "text-position": "left",
+        "text-horizontal-alignment": "center",
+        "text-vertical-alignment": "center",
+        "text-width": "medium",
+        "text-style": "none",
+        "text-background-color": "transparent",
+        "image-display-type": "medium",
+        "aspect-ratio": 56,
+        "overlay-style": "darken-bottom",
+        "parallax-enabled": false,
+        "image": "shopify://shop_images/SaltXO_April2024_69_5951fb37-4e28-4b6a-bbe5-2b829ade7f2c.jpg",
+        "overline": "{{ product.metafields.product_highlights.feature_6.value }}",
+        "title": "{{ product.metafields.custom.ingredients_statement.value }}",
+        "description": "<p>Enjoy brighter, more even skin as our Vitamin C Gel fades dark spots, reduces hyperpigmentation, and promotes a balanced complexion with its powerful, citrus-based formula. It safely rejuvenates your skin, revealing a natural, radiant glow.</p>",
+        "link-url": "",
+        "link-text": "",
+        "mobile-overlay": false,
+        "mobile-hide-description": false,
+        "mobile-image-display-type": "medium",
+        "mobile-aspect-ratio": 134,
+        "mobile-text-alignment": "bottom"
+      }
+    },
+    "1726452155e0a665ab": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_aKLNkC": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_aKLNkC"
+      ],
+      "settings": {
+        "background-color": "light",
+        "white-text": false,
+        "container-width": "6",
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "top-border": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "background-color": "none",
+        "white-text": false,
+        "container-width": "4",
+        "title": "You may also like"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_text_BCYJxM",
+    "featured_text_cGTzTK",
+    "1728251869bcf29d9d",
+    "image_with_text_htRLFY",
+    "1726452155e0a665ab",
+    "related-products"
+  ]
+}
